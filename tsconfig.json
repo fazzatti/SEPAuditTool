@@ -1,17 +1,18 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Node LTS",
   "_version": "20.1.0",
+  "display": "Node LTS",
+  "include": ["src/**/*.ts", "jest.config.ts"],
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    "strict": true,
+    "outDir": "dist",
     "lib": ["es2023"],
     "module": "node16",
     "target": "es2022",
-    "strict": true,
-    "esModuleInterop": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
     "moduleResolution": "node16",
     "noUncheckedIndexedAccess": true,
     "forceConsistentCasingInFileNames": true
-  },
-  "include": ["src/**/*.ts"]
+  }
 }
