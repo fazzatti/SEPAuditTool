@@ -17,6 +17,9 @@ importers:
       stellar-plus:
         specifier: ^0.8.0
         version: 0.8.0
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
       '@babel/core':
         specifier: ^7.24.4
@@ -2203,6 +2206,9 @@ packages:
         optional: true
       '@swc/wasm':
         optional: true
+
+  tslib@2.6.2:
+    resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
   tweetnacl@1.0.3:
     resolution: {integrity: sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==}
@@ -4873,6 +4879,8 @@ snapshots:
       typescript: 5.4.5
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+
+  tslib@2.6.2: {}
 
   tweetnacl@1.0.3: {}
 
