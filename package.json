@@ -1,0 +1,26 @@
+{
+  "name": "sep-audit-tool",
+  "version": "0.0.0",
+  "description": "A tool to ensure smart contracts comply with Stellar Ecosystem Proposals (SEPs).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "stellar",
+    "audit",
+    "smart-contracts",
+    "soroban",
+    "SEP",
+    "blockchain"
+  ],
+  "author": "Fabricius (Fifo) Zatti <fazzatti@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "jest": "^29.7.0",
+    "stellar-plus": "^0.8.0"
+  }
+}
