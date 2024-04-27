@@ -1,22 +1,21 @@
-import path from "path";
-import { Config, runCLI } from "jest";
-import { IGlobalAuditParams } from "./types";
+import { runCLI } from "jest";
 
 export interface IStartJestTestsOptions {
   testDirectory: string;
   roots: string[];
-  globalVariables?: IGlobalAuditParams;
+  invocationArgs?: string; //stringfied JSON object
 }
+
+const args = process.argv.slice(2); // Skip Node and script path arguments
 
 export const startJestTests = async (args: IStartJestTestsOptions) => {
   const jestConfig = {
     testMatch: [`${args.testDirectory}/**/*.test.js`], // Match all test files within the specified directory
     roots: args.roots,
-    globals: {
-      globalAuditParams: JSON.stringify(args.globalVariables),
-    },
     testEnvironment: "node",
   };
+
+  process.argv.push(args.invocationArgs || "{}");
 
   try {
     // Run Jest tests using jest.runCLI

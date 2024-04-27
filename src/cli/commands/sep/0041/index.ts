@@ -1,15 +1,35 @@
 import { Command } from "commander";
 import { startSep41Tests } from "../../../../seps/SEP0041";
-import configManager from "../../../../core/config";
 
 const sep0041Command = new Command("41")
   .description("SEP 0041 - Standard Token Interface")
-  .option("-p, --param <type>", "An example parameter for SEP 001")
+  .option(
+    "-w, --wasm <wasm>",
+    "Path to the WebAssembly file or a WASM hash for SEP 0041"
+  )
   .action(async (options) => {
-    console.log("Running SEP 0041 with parameter:", options.param);
+    if (!options.wasm) {
+      console.error(
+        "Error: A WASM file path or hash is required to run this command."
+      );
+      process.exit(1); // Exit the process with an error code
+    }
+
+    let wasmInput = options.wasm;
+
+    // Further input determination logic here
+    if (wasmInput.includes("/") || wasmInput.includes("\\")) {
+      console.log("Assuming WASM input is a file path:", wasmInput);
+      // Handle as file path
+    } else {
+      console.log("Assuming WASM input is a hash:", wasmInput);
+      // Handle as hash
+    }
+
+    // Assuming startSep41Tests is designed to accept an object with specific properties
     await startSep41Tests({
-      network: configManager.getConfig().network,
-      limits: configManager.getConfig().resourceLimit,
+      wasmFilePath: wasmInput.includes("/") ? wasmInput : undefined,
+      wasmHash: wasmInput.includes("/") ? undefined : wasmInput,
     });
   });
 
