@@ -17,20 +17,18 @@ const sep0041Command = new Command("41")
 
     let wasmInput = options.wasm;
 
+    let testArguments = {};
     // Further input determination logic here
     if (wasmInput.includes("/") || wasmInput.includes("\\")) {
       console.log("Assuming WASM input is a file path:", wasmInput);
-      // Handle as file path
+      testArguments = { wasmFilePath: wasmInput };
     } else {
       console.log("Assuming WASM input is a hash:", wasmInput);
-      // Handle as hash
+      testArguments = { wasmHash: wasmInput };
     }
 
     // Assuming startSep41Tests is designed to accept an object with specific properties
-    await startSep41Tests({
-      wasmFilePath: wasmInput.includes("/") ? wasmInput : undefined,
-      wasmHash: wasmInput.includes("/") ? undefined : wasmInput,
-    });
+    await startSep41Tests(testArguments);
   });
 
 export default sep0041Command;

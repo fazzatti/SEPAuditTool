@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import configManager from "../../../core/config";
+import configManager from "../../../core/config/index";
 import {
   NetworkOptions,
   ResourceLimitOptions,

@@ -6,15 +6,22 @@ import { NetworkOptions } from "../test-environment/types";
 class ConfigManager {
   private static instance: ConfigManager;
   private customConfigPath: string;
+  private testArgsPath: string;
   private config: CliConfiguration;
 
   constructor() {
     this.customConfigPath = path.join(__dirname, "../../.config/custom.json");
+    this.testArgsPath = path.join(__dirname, "../../.config/args.json");
     this.config = this.loadConfig();
 
     const configDir = path.dirname(this.customConfigPath);
     if (!fs.existsSync(configDir)) {
       fs.mkdirSync(configDir, { recursive: true });
+    }
+
+    const testArgsDir = path.dirname(this.testArgsPath);
+    if (!fs.existsSync(testArgsDir)) {
+      fs.mkdirSync(testArgsDir, { recursive: true });
     }
   }
 
@@ -62,6 +69,25 @@ class ConfigManager {
       console.log("Configuration saved successfully.");
     } catch (error) {
       console.error(`Failed to save configuration: ${error}`);
+    }
+  }
+
+  public setTestArgs<TestArgs>(testArgs: TestArgs): void {
+    try {
+      const argsJson = JSON.stringify(testArgs, null, 4);
+      fs.writeFileSync(this.testArgsPath, argsJson);
+      console.log("Test arguments saved successfully.");
+    } catch (error) {
+      console.error(`Failed to save test arguments: ${error}`);
+    }
+  }
+
+  public getTestArgs<TestArgs>(): TestArgs {
+    try {
+      const fileData = fs.readFileSync(this.testArgsPath, "utf8");
+      return JSON.parse(fileData);
+    } catch (error) {
+      return {} as TestArgs;
     }
   }
 
